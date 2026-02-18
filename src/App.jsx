@@ -91,11 +91,11 @@ const App = () => {
   }
 
   return (
-    <div className="container" style={{ padding: '1rem' }}>
+    <div className="container">
       <Header user={user} onLogout={handleLogout} />
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '2rem' }}>
-        <div className="tab-container no-scrollbar" style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem', overflowX: 'auto', paddingBottom: '4px' }}>
+        <div className="tab-container no-scrollbar stack-3-mobile" style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem', overflowX: 'auto', paddingBottom: '4px' }}>
           <button
             className={`btn ${activeTab === 'umum' ? 'btn-primary' : 'btn-ghost'}`}
             onClick={() => setActiveTab('umum')}

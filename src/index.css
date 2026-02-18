@@ -150,73 +150,58 @@ select option {
   padding: 10px;
 }
 
-/* Responsive Utilities */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Base Responsive */
 @media (max-width: 768px) {
   .container {
     padding: 1rem;
   }
+}
 
-  h1 {
-    font-size: 1.5rem;
+/* Mobile Specific (480px and below) */
+@media (max-width: 580px) {
+  .stack-3-mobile {
+    flex-direction: column !important;
+    align-items: stretch !important;
   }
 
-  h2 {
-    font-size: 1.25rem;
-  }
-
-  h3 {
-    font-size: 1.1rem;
-  }
-
-  .btn {
-    padding: 8px 16px;
-    font-size: 0.85rem;
-  }
-
-  .hide-on-mobile {
-    display: none !important;
-  }
-
-  .stack-on-mobile {
+  .filter-row {
     flex-direction: column !important;
     align-items: stretch !important;
     gap: 0.5rem !important;
   }
 
-  .stack-on-mobile span {
-    min-width: auto !important;
-    margin-bottom: 2px;
+  .grid-2-mobile {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+    overflow-x: visible !important;
   }
 
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
+  .filter-pill {
+    width: 100% !important;
   }
 
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  .card-mobile-small {
+    padding: 1rem !important;
+  }
+
+  .card-mobile-small h3 {
+    font-size: 0.95rem !important;
   }
 
   .grid-mobile-1 {
     grid-template-columns: 1fr !important;
   }
 
-  .full-width-mobile {
-    width: 100% !important;
-  }
-
-  .tab-container {
-    padding-bottom: 0.5rem;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .tab-container button {
-    flex-shrink: 0;
-    white-space: nowrap;
-  }
-}
-
-@media (max-width: 480px) {
   .glass {
     padding: 1.25rem !important;
   }

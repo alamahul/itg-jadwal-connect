@@ -9,7 +9,7 @@ const ScheduleCard = ({ item, isConflicting, isAddedAsStudent, isAddedAsAssistan
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="glass"
+            className="glass card-mobile-small"
             style={{
                 padding: '1.25rem',
                 position: 'relative',

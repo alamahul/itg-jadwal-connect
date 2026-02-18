@@ -11,7 +11,7 @@ const PersonalCard = ({ item, onRemove }) => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="glass"
+            className="glass card-mobile-small"
             style={{
                 padding: '1.25rem',
                 borderLeft: `4px solid ${isAsisten ? 'var(--secondary)' : 'var(--primary)'}`,
