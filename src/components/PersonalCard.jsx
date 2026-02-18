@@ -28,7 +28,7 @@ const PersonalCard = ({ item, onRemove }) => {
 
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <div style={{ flex: 1 }}>
-                    <h3 style={{ fontSize: '1rem', fontWeight: 700, lineHeight: 1.4, paddingRight: '50px', marginBottom: '0.25rem' }}>
+                    <h3 style={{ fontSize: '1rem', fontWeight: 700, lineHeight: 1.4, paddingRight: '20px', marginBottom: '0.25rem' }}>
                         {item.subject}
                     </h3>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.75rem', color: isAsisten ? 'var(--secondary)' : 'var(--primary)', fontWeight: 600 }}>
@@ -36,28 +36,40 @@ const PersonalCard = ({ item, onRemove }) => {
                         {isAsisten ? 'ASISTEN PRAKTIKUM' : 'MAHASISWA'}
                     </div>
                 </div>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginTop: 'auto' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <div style={{ background: 'var(--glass-bg)', padding: '6px', borderRadius: '8px', color: 'var(--text-main)' }}>
+                            <Clock size={16} />
+                        </div>
+                        <span style={{ fontSize: '0.85rem', fontWeight: 600 }}>{item.time}</span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <div style={{ background: 'var(--glass-bg)', padding: '6px', borderRadius: '8px', color: 'var(--text-main)' }}>
+                            <MapPin size={16} />
+                        </div>
+                        <span style={{ fontSize: '0.85rem', fontWeight: 600 }}>{item.room}</span>
+                    </div>
+                </div>
+
                 <button
-                    onClick={() => onRemove(item.id)}
+                    onClick={() => onRemove(item.id, item.subject)}
                     className="btn-ghost"
-                    style={{ color: '#ff4444', background: 'transparent', padding: '5px', borderRadius: '8px' }}
+                    style={{
+                        color: '#ef4444',
+                        background: 'rgba(239, 68, 68, 0.1)',
+                        padding: '8px',
+                        borderRadius: '10px',
+                        border: '1px solid rgba(239, 68, 68, 0.2)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}
                 >
                     <Trash2 size={18} />
                 </button>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginTop: 'auto' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <div style={{ background: 'var(--glass-bg)', padding: '6px', borderRadius: '8px', color: 'var(--text-main)' }}>
-                        <Clock size={16} />
-                    </div>
-                    <span style={{ fontSize: '0.9rem', fontWeight: 600 }}>{item.time}</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <div style={{ background: 'var(--glass-bg)', padding: '6px', borderRadius: '8px', color: 'var(--text-main)' }}>
-                        <MapPin size={16} />
-                    </div>
-                    <span style={{ fontSize: '0.9rem', fontWeight: 600 }}>{item.room}</span>
-                </div>
             </div>
         </motion.div>
     );
