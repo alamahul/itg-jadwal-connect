@@ -1,7 +1,7 @@
 import React from 'react';
-import { Calendar, LogOut } from 'lucide-react';
+import { Calendar, LogOut, Settings } from 'lucide-react';
 
-const Header = ({ user, onLogout }) => {
+const Header = ({ user, onLogout, onOpenSettings }) => {
     return (
         <header className="glass stack-on-mobile" style={{ padding: '1.25rem 1.5rem', marginBottom: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
@@ -19,9 +19,14 @@ const Header = ({ user, onLogout }) => {
                     <p style={{ fontSize: '0.85rem', fontWeight: 600 }}>{user?.name}</p>
                     <p style={{ fontSize: '0.65rem', color: 'var(--text-muted)' }}>Smtr {user?.semester} • Kls {user?.userClass}</p>
                 </div>
-                <button onClick={onLogout} className="btn btn-ghost" style={{ padding: '8px' }}>
-                    <LogOut size={18} />
-                </button>
+                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                    <button onClick={onOpenSettings} className="btn btn-ghost" style={{ padding: '8px' }}>
+                        <Settings size={18} />
+                    </button>
+                    <button onClick={onLogout} className="btn btn-ghost" style={{ padding: '8px' }}>
+                        <LogOut size={18} />
+                    </button>
+                </div>
             </div>
         </header>
     );

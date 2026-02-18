@@ -1,0 +1,16 @@
+{
+    "name": "ITG Jadwal Connect",
+    "short_name": "ITG Jadwal",
+    "description": "Aplikasi Manajemen Jadwal Kuliah ITG 2025-2026",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0f172a",
+    "theme_color": "#6366f1",
+    "icons": [
+        {
+            "src": "vite.svg",
+            "sizes": "48x48 72x72 96x96 128x128 192x192 256x256 512x512",
+            "type": "image/svg+xml"
+        }
+    ]
+}

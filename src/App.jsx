@@ -13,6 +13,7 @@ import Filters from './components/Filters';
 import ScheduleCard from './components/ScheduleCard';
 import PersonalCard from './components/PersonalCard';
 import ConflictSummary from './components/ConflictSummary';
+import SettingsModal from './components/SettingsModal';
 
 const App = () => {
   const {
@@ -33,6 +34,19 @@ const App = () => {
   const [filterSemester, setFilterSemester] = useState(user?.semester || 'Semua');
   const [filterClass, setFilterClass] = useState(user?.userClass || 'Semua');
 
+  // Settings & Theme
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [theme, setTheme] = useState(() => localStorage.getItem('itg_theme') || 'dark');
+  const [settings, setSettings] = useState(() => {
+    const saved = localStorage.getItem('itg_notif_settings');
+    return saved ? JSON.parse(saved) : {
+      enabled: true,
+      midnightSummary: true,
+      beforeMinutes: [15],
+      soundEnabled: true
+    };
+  });
+
   const days = ['Semua', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
   const semesters = ['Semua', '2', '4', '6', '8'];
   const classes = ['Semua', 'A', 'B', 'C', 'D', 'E'];
@@ -45,8 +59,33 @@ const App = () => {
     }
   }, [user]);
 
-  // Notification Reminder Logic
+  // Apply Theme
   useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('itg_theme', theme);
+  }, [theme]);
+
+  // Save Settings & Sync SW
+  useEffect(() => {
+    localStorage.setItem('itg_notif_settings', JSON.stringify(settings));
+    if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+      navigator.serviceWorker.controller.postMessage({
+        type: 'SYNC_SETTINGS',
+        settings: settings
+      });
+    }
+  }, [settings]);
+
+  // Notification Reminder Logic & SW Sync
+  useEffect(() => {
+    // Sync with Service Worker for background notifications
+    if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+      navigator.serviceWorker.controller.postMessage({
+        type: 'SYNC_SCHEDULE',
+        schedule: mySchedule
+      });
+    }
+
     const timer = setInterval(() => {
       const now = new Date();
       const currentDay = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'][now.getDay()];
@@ -92,7 +131,7 @@ const App = () => {
 
   return (
     <div className="container">
-      <Header user={user} onLogout={handleLogout} />
+      <Header user={user} onLogout={handleLogout} onOpenSettings={() => setIsSettingsOpen(true)} />
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '2rem' }}>
         <div className="tab-container no-scrollbar stack-3-mobile" style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem', overflowX: 'auto', paddingBottom: '4px' }}>
@@ -255,6 +294,15 @@ const App = () => {
           <Bell size={24} color="var(--primary)" />
         </button>
       </div>
+
+      <SettingsModal
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
+        settings={settings}
+        setSettings={setSettings}
+        theme={theme}
+        setTheme={setTheme}
+      />
     </div>
   );
 };
