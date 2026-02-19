@@ -285,7 +285,7 @@ const App = () => {
             </div>
           </section>
         ) : (
-          <ConflictSummary mySchedule={mySchedule} />
+          <ConflictSummary mySchedule={mySchedule} onRemove={removeFromMySchedule} />
         )}
       </div>
 

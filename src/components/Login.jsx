@@ -43,7 +43,7 @@ const Login = ({ onLogin, semesters, classes }) => {
                             <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                                 <BookOpen size={14} /> SEMESTER
                             </label>
-                            <select name="semester" required style={{ width: '100%', padding: '12px', borderRadius: '12px', background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', color: 'var(--text-main)' }}>
+                            <select name="semester" required style={{ width: '100%', padding: '12px', background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', color: 'var(--text-main)' }}>
                                 {semesters.filter(s => s !== 'Semua').map(sem => (
                                     <option key={sem} value={sem}>Semester {sem}</option>
                                 ))}
@@ -53,7 +53,7 @@ const Login = ({ onLogin, semesters, classes }) => {
                             <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                                 <Users size={14} /> KELAS
                             </label>
-                            <select name="userClass" required style={{ width: '100%', padding: '12px', borderRadius: '12px', background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', color: 'var(--text-main)' }}>
+                            <select name="userClass" required style={{ width: '100%', padding: '12px', background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', color: 'var(--text-main)' }}>
                                 {classes.filter(c => c !== 'Semua').map(cls => (
                                     <option key={cls} value={cls}>Kelas {cls}</option>
                                 ))}
